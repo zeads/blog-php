@@ -7,5 +7,25 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('home', [
+        'title' => 'Home'
+    ]);
+});
+
+Route::get('/blog', function () {
+    return view('blog', [
+        'title' => 'Blog'
+    ]);
+});
+
+Route::get('/about', function () {
+    return view('about', [
+        'title' => 'About'
+    ]);
+});
+
+Route::get('/contact', function () {
+    return view('contact', [
+        'title' => 'Contact'
+    ]);
 });
