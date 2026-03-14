@@ -8,7 +8,8 @@
             <p class="mb-4 leading-relaxed text-gray-500">
                 {{ Str::limit($post['body'],100) }}
             </p>
-            <a href="/posts/{{ $post['id'] }}" class="text-blue-600 hover:underline">Read more &raquo;</a>
+            {{-- <a href="/posts/{{ $post['id'] }}" class="text-blue-600 hover:underline">Read more &raquo;</a> --}}
+            <a href="/posts/{{ $post['slug'] }}" class="text-blue-600 hover:underline">Read more &raquo;</a>
         </article>
     @endforeach
 </x-layout>
