@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::get('/', function () {
     return view('home', [
@@ -10,26 +13,7 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', function () {
-    $posts = [
-        [
-            'id' => 1,
-            'slug' => 'judul-artikel-pertama',
-            'title' => 'Judul Artikel Pertama',
-            'author' => 'Ruri Pelinandang',
-            'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magnam molestias unde libero velit cumque eligendi tenetur natus accusamus totam,
-            laborum quibusdam ad? Tempora, iusto expedita quis laborum necessitatibus iure quidem?'
-        ],
-        [
-            'id' => 2,
-            'slug' => 'judul-artikel-kedua',
-            'title' => 'Judul Artikel kedua',
-            'author' => 'Ruri Pelinandang',
-            'body' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Quae Eveniet delectus iste ullam, ut ducimus recusandae culpa libero.
-            Nihil odio quidem, beatae unde ratione totam eligendi animi delectus autem dolorum tempore?'
-        ]
-    ];
+    $posts = Post::all();
     return view('blog', [
         'title' => 'Blog',
         'posts' => $posts
@@ -38,36 +22,12 @@ Route::get('/posts', function () {
 
 // Route::get('posts/{id}', function ($id) {
 Route::get('posts/{slug}', function ($slug) {
-    $posts = [
-        [
-            'id' => 1,
-            'slug' => 'judul-artikel-pertama',
-            'title' => 'Judul Artikel Pertama',
-            'author' => 'Ruri Pelinandang',
-            'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magnam molestias unde libero velit cumque eligendi tenetur natus accusamus totam,
-            laborum quibusdam ad? Tempora, iusto expedita quis laborum necessitatibus iure quidem?'
-        ],
-        [
-            'id' => 2,
-            'slug' => 'judul-artikel-kedua',
-            'title' => 'Judul Artikel kedua',
-            'author' => 'Ruri Pelinandang',
-            'body' => 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Quae Eveniet delectus iste ullam, ut ducimus recusandae culpa libero.
-            Nihil odio quidem, beatae unde ratione totam eligendi animi delectus autem dolorum tempore?'
-        ]
-    ];
 
-    // $post = Arr::first($posts, function ($post) use ($id) {
-    $post = Arr::first($posts, function ($post) use ($slug) {
-        // return $post['id'] == $id;
-        return $post['slug'] == $slug;
-    });
+    $post = Post::find($slug);
 
-    if(! $post) {
-        abort(404);
-    }
+    // if(! $post) {
+    //     abort(404);
+    // }
 
     return view('post', [
         'title' => 'Single Post',
