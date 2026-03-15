@@ -21,9 +21,10 @@ Route::get('/posts', function () {
 });
 
 // Route::get('posts/{id}', function ($id) {
-Route::get('posts/{slug}', function ($slug) {
+// Route::get('posts/{slug}', function ($slug) {
+Route::get('posts/{post:slug}', function (Post $post) {
 
-    $post = Post::find($slug);
+    // $post = Post::find($slug);
 
     // if(! $post) {
     //     abort(404);
