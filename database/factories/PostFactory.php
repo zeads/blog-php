@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -21,7 +22,8 @@ class PostFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'author' => fake()->name(),
+            // 'author' => fake()->name(),
+            'author_id' => User::factory(),
             'body' => fake()->paragraphs(rand(5,7), true),
 
         ];
