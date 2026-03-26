@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Post;
-// use Illuminate\Support\Arr;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::get('/posts', function () {
     $posts = Post::all();
-    return view('blog', [
+    return view('posts', [
         'title' => 'Blog',
         'posts' => $posts
     ]);
@@ -36,7 +36,12 @@ Route::get('posts/{post:slug}', function (Post $post) {
     ]);
 });
 
-
+Route::get('/authors/{user}', function (User $user) {
+    return view('posts', [
+        'title' => 'Article By. ' . $user->name,
+        'posts' => $user->posts
+    ]);
+});
 
 Route::get('/about', function () {
     return view('about', [
